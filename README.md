@@ -6,6 +6,10 @@ User can enter any  one value State, City , Zip and can check the current weathe
 
 Based on the city, state, Zip entered we get the geolocation of the USER using google maps API and then call two different openweather API's for current and future forecast. 
 
+![](src/assets/addressForm.PNG)
+![](src/assets/currentForecast.PNG)
+![](src/assets/FutureForecast.PNG)
+![](src/assets/TestRun.PNG)
 
 # Stack :  
 Angular 6.1.0 , Angular-CLI 6.1.2, Karma 1.7.1 , Jasmine 2.5.45 , NPM
