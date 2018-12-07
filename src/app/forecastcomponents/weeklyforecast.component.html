@@ -1,0 +1,44 @@
+
+    
+    <div>
+        <!-- Clickable Button for displaying future forecast-->
+        <button (click) = displayWeeklyForecast(paramsList) class="btn mT20">Want to know forecast for this week</button>
+
+         <!--Error Messages when no data available--> 
+        <div *ngIf ="showError">
+            <br/>
+            <span> <strong> Please try again or come back later. Sorry for the inconvinience.</strong> </span>
+          </div>
+        <!-- Hiding and Showing the weekly forecast using structural directive *ngIf-->
+        <div *ngIf="showWeeklyForecast" class="padding-top-30">
+                <div>
+                    <h3 class="pull-left">Hourly Forecast for this week</h3>
+                </div>
+                <br/>
+                <div class="">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Date</th>   
+                            <th>Humidity</th>
+                            <th>Temparature</th>
+                            <th>Max Temperature</th>
+                            <th>Min Temperature</th>
+                            <th>wind</th>
+                        </tr>
+                        <!--using structual directive *ngFor for displaying the list - repeat-->
+                        <tr *ngFor="let list of forecastList">
+                                <td>{{list.dt_txt}}</td>    
+                                <td>{{list.main.humidity}}%</td>
+                                <td>{{list.main.temp}}</td>
+                                <td>{{list.main.temp_max}}</td>
+                                <td>{{list.main.temp_min}}</td>
+                                <td>{{list.wind.speed}} m/s </td>
+                        </tr> 
+                    </tbody>
+                    </table>
+                </div>
+                
+            </div>
+
+<div>

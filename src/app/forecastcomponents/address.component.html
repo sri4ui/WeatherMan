@@ -1,0 +1,62 @@
+<div class="horizontal-center">
+  <div class="padding-top-30">
+    <h1>Weather Man</h1>
+    <div class="display-inline">
+      <div class="pull-left"><h4>Let Weatherman know where you want to see conditions</h4></div>
+      <br/>
+      <div class="pull-left">
+        <!--Form to enter user address-->
+        <form [formGroup]="addressForm" (ngSubmit)="getGeoLocation()">
+              Street: <input formControlName = "streetAddress"  type="text" id="street"/> 
+              City: <input formControlName = "city"   type="text" id="city"/>
+              State: <input formControlName = "state"  type="text" id="state"/>
+              Zip Code: <input formControlName = "zip" type="text" id="zipcode"/>
+              <button  [disabled]="isFormEmpty()" class="btn btn-default mL10">See Weather</button>
+      </form>
+      <br/>
+        <div class="">
+          <!--Display weather information only when available -->
+          <div class="margin-top" *ngIf = "showWeatherInfo">
+            <h4>Current Weather at {{formattedAddr}}</h4>
+            <br/> 
+           <div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Humidity</td>
+                    <td>{{currentWeather.main.humidity}} %</td>
+                  </tr>
+                  <tr>
+                    <td>Sunrise</td>
+                    <td>{{currentWeather.sys.sunrise}}</td>
+                  </tr>
+                  <tr>
+                    <td>Sunset</td>
+                    <td>{{currentWeather.sys.sunset}}</td>
+                  </tr>
+                  <tr>
+                    <td>Daily Temperature</td>
+                    <td>{{currentWeather.main.temp}}</td>
+                  </tr>
+                  <tr>
+                    <td>Wind</td>
+                    <td>{{currentWeather.wind.speed}} m/s</td>
+                  </tr>
+                </tbody>
+                </table>
+              </div>
+              <!--Binding value to weekly forecast component as the weekly forecast API is based on latititue and longitude-->
+              <app-Weeklyforecast [paramsList] = getInputParamsList()
+                                  [hideWeeklyInfo] = getHideWeeklyInfoFlag()>
+              </app-Weeklyforecast>
+          </div>
+        </div>
+       <!--Error Messages when no data available--> 
+      <div *ngIf ="showError">
+        <br/>
+        <span> <strong> We have trouble finding your address. Please try again later or verify your address.</strong> </span>
+      </div>
+    </div>
+  </div>			
+  </div>
+  </div>
